@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Landing Page</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+<section class="showcase active">
+    <header>
+        <h2 class="logo">Travel</h2>
+        <div class="toggle"></div>
+    </header>
+
+    <video src="{{ url_for('static', path='img/explore.mp4') }}" muted loop autoplay></video>
+
+
+    <div class="text">
+        <h2 id="text1">Никогда не останавливайся</h2>
+        <h3 id="text2">Исследуя мир!</h3>
+        <p>Мы осуществим вашу мечту о том, чтобы найти идеальное решение.</p>
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li class="home"><a href="#">Home</a></li>
+
+            {% if prof == "no" %}
+                <li id="login"><a href="#">Вход</a></li>
+            {% elif prof == "moder" %}
+                <li><a href="/profile_moder">Работа</a></li>
+            {% elif prof == "admin" %}
+                <li><a href="/profile_admin">Работа</a></li>
+            {% else %}
+                <li><a href="/profile">Профиль</a></li>
+            {% endif %}
+
+            <li><a href="#">Помощь</a></li>
+        </ul>
+    </div>
+
+</section>
+<section class="transition">
+    <svg viewBox="0 0 1440 120" class="wave">
+        <path d="M1440,21.2101911 L1440,120 L0,120 L0,21.2101911 C120,35.0700637 240,42 360,42 C480,42 600,35.0700637 720,21.2101911 C808.32779,12.416393 874.573633,6.87702029 918.737528,4.59207306 C972.491685,1.8109458 1026.24584,0.420382166 1080,0.420382166 C1200,0.420382166 1320,7.35031847 1440,21.2101911 Z"></path>
+    </svg>
+</section>
+<section class="search">
+    <div class="input-search-filter-container">
+        <div class="filters">
+            <div class="cont-filter">
+                <div class="filter">Фильтр</div>
+                <input autocomplete="google_chrome_fix" type="text" class="input-search-filter" placeholder="Поисковик или фильтр">
+                <ion-icon class="icon-search" name="search-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="filter-by">Фильтровать по</div>
+    </div>
+</section>
+<section class="content">
+    <div class="content-container">
+        {% for post_id, images, post_name, locality_name, country_name, category_name in posts %}
+            <div data-post-id="{{ post_id }}" class="content-card">
+                <img src="{{ url_for('static', path='img/pictures/' ~ images) }}">
+                <div class="content-card-centered">
+                    <p>{{ post_name }}</p>
+                    <p>{{ category_name  }}</p>
+                </div>
+                <div class="content-card-bottomLeft">{{ locality_name }}</div>
+                <div class="content-card-bottomRight">{{ country_name }}</div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+<section class="login">
+    <div class="wrapper">
+            <span class="icon-close">
+                <ion-icon name="close"></ion-icon>
+            </span>
+        <div class="from-box login">
+            <div class="logh2"><h2>Вход</h2></div>
+            <form method="post" action="/login">
+                <div class="input-box">
+                    <input type="text" name="username" required>
+                    <label>Login</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <button type="submit" class="bth">Войти</button>
+            </form>
+            <a href="/register" class="register-url"> Нету данных для входа ? Вам сюда --> "тык"</a>
+        </div>
+    </div>
+</section>
+<section id="show-record" class="section-show-record">
+    <div class="icon-close"><ion-icon name="close"></ion-icon></div>
+    <div class="section-show-record-box">
+        <div class="section-show">
+            <div class="header-show">
+                <div class="section-show-tittle">
+                    <h2></h2>
+                    <a></a>
+                </div>
+                <img src="{{ url_for('static', path='img/bg.jpeg') }}"/>
+                <div class="img-color"></div>
+            </div>
+            <div class="section-show-content">
+                <div class="section-show-content-subcategory">
+                    <h3 class="underlined">Основное</h3>
+                    <h3>Подкатегория🛠</h3>
+                    <h3>Подкатегория🛠</h3>
+                    <h3>Подкатегория🛠</h3>
+                </div>
+                <div class="section-show-content-paragraph">
+                    <div class="show-info">
+                        <h3>🌍 Страна:</h3>
+                        <h3>🗺 Округ:</h3>
+                        <h3>🏞 Локация:</h3>
+                        <h3>🛫 Категория:</h3>
+                    </div>
+                    <div class="show-info-Bd">
+                        <h4></h4>
+                        <h4></h4>
+                        <h4></h4>
+                        <h4></h4>
+                    </div>
+                </div>
+
+                <div class="show-description">
+                    <div class="show-description-section"><h3>Описание📝</h3>
+                        <div class="text-description">
+                            <p>Описание место</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+<script src="{{ url_for('static', path='js/main.js') }}"></script>
+<script src="{{ url_for('static', path='js/post.js') }}"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>
+
+

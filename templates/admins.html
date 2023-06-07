@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admins</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+<div class="container">
+    <section class="main">
+        <div class="main-top">
+            <div class="name-moder"><h1>{{ acc_info.login }} {{ acc_info.name }}</h1></div>
+            <div class="icons">
+                <a href="/logout"><ion-icon name="enter-outline"></ion-icon></a>
+                <a href="/home"><ion-icon name="airplane-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="warning-outline"></ion-icon></a>
+                <a href="/myinfo"><ion-icon name="cloud-upload"></ion-icon></a>
+            </div>
+        </div>
+    </section>
+    <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Почта</th>
+                    <th>Логин</th>
+                    <th>Роль</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users_info%}
+                    <tr>
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.patronymic}}</td>
+                        <td>{{user.mail}}</td>
+                        <td>{{user.login}}</td>
+                        <td>{{user.post}}</td>
+                    </tr>
+                {% endfor %}
+
+                <tbody>
+            </table>
+        </div>
+    <div class="table-wrapper2">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Почта</th>
+                <th>Начало работы</th>
+                <th>Стаж /м</th>
+                <th>Должность</th>
+                <th>Зарплата $</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for emp in employee %}
+                        <tr>
+                            <td>{{emp.surname}}</td>
+                            <td>{{emp.name}}</td>
+                            <td>{{emp.mail}}</td>
+                            <td>{{emp.work_experience}}</td>
+                            <td>{{emp.start_date}}</td>
+                            <td>{{emp.name_job}}</td>
+                            <td>{{emp.salary}}</td>
+                        </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+    <div class="table-wrapper3">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Логин</th>
+                <th>Warnings</th>
+                <th>Posts</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for moder in moderators_work%}
+                    <tr>
+                        <td>{{moder.name}}</td>
+                        <td>{{moder.surname}}</td>
+                        <td>{{moder.login}}</td>
+                        <td>{{moder.number_of_warnings}}</td>
+                        <td>{{moder.number_of_processed_posts}}</td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+    <div class="table-wrapper4">
+        <table style="width: 300px" class="fl-table">
+            <thead>
+            <tr>
+                <th>Страна</th>
+                <th>Количетсво записей</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for info in country%}
+                    <tr>
+                        <td>{{info.country_name}}</td>
+                        <td>{{info.count}}</td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+    <div class="table-wrapper5">
+        <table style="width: 300px" class="fl-table">
+            <thead>
+            <tr>
+                <th>Локация</th>
+                <th>Количетсво записей</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for info in territory%}
+                    <tr>
+                        <td>{{info.territory_name}}</td>
+                        <td>{{info.count}}</td>
+                    </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+    </div>
+    <div class="table-wrapper6">
+        <table style="width: 300px" class="fl-table">
+            <thead>
+            <tr>
+                <th>Територия</th>
+                <th>Количетсво записей</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for info in locality%}
+                    <tr>
+                        <td>{{info.locality_name}}</td>
+                        <td>{{info.count}}</td>
+                    </tr>
+            {% endfor %}
+            <tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

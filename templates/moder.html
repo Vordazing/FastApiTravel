@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Moderator</title>
+   <link rel="stylesheet" href="/static/css/moder.css">
+</head>
+<body>
+  <div class="container">
+    <section class="main">
+      <div class="main-top">
+        <div class="name-moder"><h1>{{ acc_info.login }} {{ acc_info.name }}</h1></div>
+        <div class="icons">
+          <a href="/logout"><ion-icon name="enter-outline"></ion-icon></a>
+          <a href="/home"><ion-icon name="airplane-outline"></ion-icon></a>
+          <a href="#"><ion-icon name="warning-outline"></ion-icon></a>
+          <a href="/myinfo"><ion-icon name="cloud-upload"></ion-icon></a>
+        </div>
+      </div>
+
+      <section class="attendance">
+        <div class="attendance-list">
+          <h1>Обработка записей со статусом "На проверке"</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Имя</th>
+                <th>ID пользователя</th>
+                <th>Тема</th>
+                <th>Дата</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for post_info, creator_name in record_checks %}
+              <tr>
+                <td>{{ creator_name }}</td>
+                <td>{{ post_info.account_id }}</td>
+                <td>{{ post_info.name }}</td>
+                <td>{{ post_info.data }}</td>
+                <td class="td-a">
+                  <div><a href="/my_card/{{ post_info.id_postinfo }}">перейти</a></div>
+                  <div class="report"><a href="#">report</a></div></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

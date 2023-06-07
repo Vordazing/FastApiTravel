@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/css/anketa.css" />
+</head>
+<body>
+
+<section class="container">
+    <a href="{{url}}" class="container-back"><ion-icon  name="arrow-undo-circle-outline"></ion-icon></a>
+
+    <header>Мои данные</header>
+
+    <form action="/myupdate" method="post" class="form" >
+        <div class="column">
+            <div class="input-box">
+                <label>Имя</label>
+                <input type="text" id="name" name="name" value="{{info.name}}" required>
+            </div>
+            <div class="input-box">
+                <label>Фамилия</label>
+                <input type="text" id='surname' name="surname" value="{{info.surname}}" required>
+            </div>
+        </div>
+        <div class="column">
+            <div class="input-box">
+                <label>Отчество</label>
+                <input type="text" id='patronymic' name="patronymic" value="{{info.patronymic}}" required>
+            </div>
+            <div class="input-box">
+                <label>Почта</label>
+                <input id='mail' type="email" name="mail" value="{{info.mail}}" required>
+            </div>
+        </div>
+        <button>Обновить</button>
+    </form>
+
+</section>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

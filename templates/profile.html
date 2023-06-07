@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Landing Page</title>
+  <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+
+<body>
+<section class="showcase active">
+  <header>
+    <h2 class="logo">My Profile -> {{ account_info.login }} </h2>
+  </header>
+
+  <video src="{{ url_for('static', path='img/prof2.MP4') }}" muted loop autoplay></video>
+
+
+<section class="profile">
+  <div class="profile-content-h1">
+    <h1>Имя:</h1>
+    <h1>Рейтинг:</h1>
+    <h1>Уровень:</h1>
+  </div>
+  <div class="profile-content-h2">
+    <h1>{{ account_info.name }}</h1>
+    <h1>{{ account_info.rating }}</h1>
+    <h1>{{ account_info.level }}</h1>
+  </div>
+  <div class="profile-input">
+    <div class="icon-input">
+      <a href="/home"><ion-icon name="arrow-undo"></ion-icon></a>
+      <a href="/travelcards"> <ion-icon name="add-circle"></ion-icon></a>
+      <a href="/myinfo"><ion-icon name="cloud-upload"></ion-icon></a>
+      <a href="/logout"><ion-icon name="log-in"></ion-icon></a>
+    </div>
+  </div>
+</section>
+<section class="content">
+
+  <h2 class="h2-note"> Мои записи</h2>
+
+  <div class="content-container">
+    {% for post, locality_name, country_name in record %}
+    <a href="/my_card/{{ post.id_postinfo }}" class="content-card">
+      <img src="{{ url_for('static', path='img/test1.jpeg') }}">
+      <div class="content-card-centered">
+        <p>{{ post.name }}</p>
+        <p>{{ post.category.category }}</p>
+      </div>
+      <div class="content-card-bottomLeft">{{ locality_name }}</div>
+      <div class="content-card-bottomRight">{{ country_name }}</div>
+    </a>
+    {% endfor %}
+
+  </div>
+</section>
+</section>
+
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

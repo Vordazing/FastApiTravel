@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+    <link rel="stylesheet" href="/static/css/cards.css">
+</head>
+<body>
+
+<div class="area">
+
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+ {% if user_status != 'member' %}
+  <form action="" class="status">
+    <select>
+      <option>На проверке</option>
+      <option>Одобренно</option>
+      <option>Отклоненно</option>
+    </select>
+  </form>
+{% endif %}
+
+  <form action="/addtravelcards" method="post" class="trip-form">
+    <a href="/profile" class="back-icons"><ion-icon  name="arrow-undo-circle-outline"></ion-icon></a>
+    <span>Карточка</span>
+    <ul class="ul-form">
+      <li>
+        <input type="text" name="name" placeholder="Название">
+      </li>
+      <li>
+        <select name="categories_id">
+          <option disabled selected value="0">Категория</option>
+          {% for category in info_cat %}
+            <option value="{{ category.id_categories }}">{{ category.category }}</option>
+          {% endfor %}
+        </select>
+      </li>
+      <li>
+        <select name="country_id">
+          <option disabled selected value="0">Локация</option>
+          {% for location in info_location %}
+            <option value="{{ location.id_location }}">{{location.country}} {{location.territory}} {{location.location}}</option>
+          {% endfor %}
+        </select>
+      </li>
+      <li>
+        <textarea name="description" placeholder="Описание" rows="2"></textarea>
+      </li>
+      <li>
+<!--        <form enctype="multipart/form-data" method="post">-->
+<!--          <input type="file" multiple accept="image/*,image/jpeg" name="picture">-->
+<!--        </form>-->
+      </li>
+      <li>
+        <input type="submit" placeholder="Send">
+      </li>
+    </ul>
+  </form>
+</div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

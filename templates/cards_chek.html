@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+    <link rel="stylesheet" href="/static/css/cards_check.css">
+</head>
+<body>
+
+<div class="area">
+
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+    {% if user_status != 'member' %}
+      <form action="/statusupdate" method="post" class="status">
+            <select name="status">
+              <option value="Одобренно {{info_cards.id_postinfo}}">Одобренно</option>
+              <option value="Отклоненно {{info_cards.id_postinfo}}">Отклоненно</option>
+            </select>
+            <button>Отправить</button>
+      </form>
+    {% endif %}
+    <div class="trip-form">
+        {% if user_status == 'member' %}
+            <a href="/profile" class="back-icons"><ion-icon name="arrow-undo-circle-outline"></ion-icon></a>
+        {% elif user_status == 'moderator' %}
+            <a href="/profile_moder" class="back-icons"><ion-icon name="arrow-undo-circle-outline"></ion-icon></a>
+        {% elif user_status == 'administrator' %}
+            <a href="/profile_admin" class="back-icons"><ion-icon name="arrow-undo-circle-outline"></ion-icon></a>
+            {% endif %}
+        <span>Карточка</span>
+        <ul class="ul-form-check">
+            <li>
+              {{info_cards.data}}
+            </li>
+            <li>
+              {{info_cards.name}}
+            <li>
+              {{info_cards.country_name}}
+            </li>
+            <li>
+              {{info_cards.territory_name}}
+            </li>
+            <li>
+              {{info_cards.locality_name}}
+            </li>
+            <li>
+              {{info_cards.category_name}}
+            </li>
+            <li>
+              {{info_cards.status}}
+            </li>
+        </ul>
+        <div class="description">{{info_cards.description}}</div>
+    </div>
+
+</div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>
